@@ -14,25 +14,6 @@ import ctypes
 import sys
 import time
 
-
-# def get_window_titles():
-#     titles = []
-
-#     def callback(hwnd, lParam):
-#         if win32gui.IsWindowVisible(hwnd):
-#             titles.append(win32gui.GetWindowText(hwnd))
-#             # if "MuMu" in win32gui.GetWindowText(hwnd):
-#             #     win32gui.SetWindowPos(hwnd, win32con.HWND_TOP, 0, 0, 0, 0, win32con.SWP_NOSIZE | win32con.SWP_SHOWWINDOW)
-#             #     print("yes")
-#         return True
-#     win32gui.EnumWindows(callback, None)
-#     return titles
-
-
-# titles = get_window_titles()
-# print(titles)
-
-
 # 找图的最大时间
 max_time = 2
 
@@ -59,6 +40,8 @@ class BiLanHangXian():
         self.gameImage = ""
         # 设置阈值
         self.threshold = 0.8
+        # 移动游戏窗口到屏幕的左上角
+        self.MoveWindow()
     # 子类被定义时执行，也就是class MySubclass(MyClass):
     def __init_subclass__(cls):
         pass
@@ -120,27 +103,59 @@ class BiLanHangXian():
         print("finding image")
         locations = np.where(result >= self.threshold)
         locations = list(zip(*locations[::-1]))
-        for i in range(len(locations)):
-            top_left = locations[i]
+        if len(locations) != 0:
+            top_left = locations[0]
             bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
-            locations[i] = (int(top_left[0] + img.shape[1]/2), int(top_left[1] + img.shape[0]/2))
+            locations[0] = (int(top_left[0] + img.shape[1]/2), int(top_left[1] + img.shape[0]/2))
             cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)
-        # cv2.imshow("Output", self.gameImage)
-        # cv2.waitKey(0)
-        # print("--------------------", locations)
-        return locations
+            # cv2.imshow("Output", self.gameImage)
+            # cv2.waitKey(0)
+            print("start find--------------------", locations)
+            return locations[0]
+    
+    @GetScreenShot
+    def FindTargetByTime(self, img, time):
+        while True:
+            result = cv2.matchTemplate(self.gameImage, img, cv2.TM_CCOEFF_NORMED)
+            print("finding image")
+            locations = np.where(result >= self.threshold)
+            locations = list(zip(*locations[::-1]))
+            top_left = locations[0]
+            bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
+            locations[0] = (int(top_left[0] + img.shape[1]/2), int(top_left[1] + img.shape[0]/2))
+            cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)
+            # cv2.imshow("Output", self.gameImage)
+            # cv2.waitKey(0)
+            print("start find--------------------", locations[0])
+            if len(locations) != 0:
+                return locations[0]
+
     
 
+    def yan_xi(self):
+        imgName = ".\\image\\cj.png"
+        result = LeftSingleClick(self.FindTarget(GetImage(imgName)))
+        if result:
+            result = LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\yx.png")))
 
 
-class YanXi(BiLanHangXian):
-    def __init__(self):
-        super().__init__()
-        # 移动游戏窗口到屏幕的左上角
-        super().MoveWindow()
+            if result:
+                LeftSingleClick((220, 220))
+                result = LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\ksyx.png")))
+                if result:
+                    LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\cj.png")))
+        time.sleep(60)
+        LeftSingleClick((220, 220))
+        LeftSingleClick((220, 220))
+        result = LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\qd.png")))
+        if result:
+            result = LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\djgb.png")))
+                        
 
+    
 
 def GetImage(imgName):
+    print("turn :", imgName)
     return cv2.imread(imgName, 0)
 
 
@@ -162,9 +177,10 @@ def LeftSingleClick(pos):
     time.sleep(0.5)
     if pos:
         # pyautogui.click(pos[0])
-        print(pos[0])
-        pydirectinput.leftClick(int(pos[0][0]), int(pos[0][1]))
+        print(pos)
+        pydirectinput.leftClick(int(pos[0]), int(pos[1]))
         print("click success")
+        time.sleep(4)
         return True
     else:
         print("no find image")
@@ -172,10 +188,10 @@ def LeftSingleClick(pos):
 
 
 if __name__ == '__main__':
-    yanxi = YanXi()
+    b = BiLanHangXian()
     time.sleep(1)
     # imgName = input()
-    imgName = "xs"
-    imgName = imgName + ".png"
-    timeout =  LeftSingleClick(yanxi.FindTarget(GetImage(imgName)))
-    print(timeout)
+    # imgName = "xs"
+    # imgName = imgName + ".png"
+    # timeout =  LeftSingleClick(b.FindTarget(GetImage(imgName)))
+    b.yan_xi()
