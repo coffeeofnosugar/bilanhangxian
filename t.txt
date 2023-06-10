@@ -1,0 +1,221 @@
+Microsoft Windows [版本 10.0.19045.2965]
+(c) Microsoft Corporation。保留所有权利。
+
+C:\WINDOWS\system32>cd C:\Users\zhengchang\Desktop\Script
+
+C:\Users\zhengchang\Desktop\Script>win32
+
+C:\Users\zhengchang\Desktop\Script>#!/bin/bash
+'#!' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+C:\Users\zhengchang\Desktop\Script>python win32.py
+done
+turn : .\image\cj.png
+
+
+start find-------------------- (1083, 397)
+
+
+start find-------------------- (1083, 397)
+(1083, 397)
+click success
+turn : .\image\zuozhandangan\zzda.png
+
+
+start find-------------------- (243, 649)
+
+
+start find-------------------- (243, 649)
+(243, 649)
+click success
+turn : .\image\zuozhandangan\no2.png
+
+
+
+
+start find-------------------- (958, 288)
+
+
+start find-------------------- (958, 288)
+(958, 288)
+click success
+turn : .\image\zuozhandangan\D3.png
+
+
+
+
+start find-------------------- (950, 343)
+
+
+start find-------------------- (950, 343)
+(950, 343)
+click success
+turn : .\image\zuozhandangan\lkqw.png
+
+
+start find-------------------- (950, 555)
+
+
+start find-------------------- (950, 555)
+(950, 555)
+click success
+turn : .\image\zuozhandangan\lkqw1.png
+
+
+start find-------------------- (1077, 641)
+
+
+start find-------------------- (1077, 641)
+(1077, 641)
+click success
+turn : .\image\zuozhandangan\qd.png
+
+
+start find-------------------- (790, 547)
+
+
+start find-------------------- (790, 547)
+(790, 547)
+click success
+turn : .\image\zhengli\zl.png
+start the 1 time, 2 more time
+
+
+
+
+
+
+turn : .\image\zuozhandangan\zcqw.png
+
+
+
+
+
+start find-------------------- (918, 659)
+
+
+start find-------------------- (918, 659)
+(918, 659)
+click success
+turn : .\image\zuozhandangan\qd.png
+
+
+start find-------------------- (790, 547)
+
+
+start find-------------------- (790, 547)
+(790, 547)
+click success
+2023-06-10 14:01:38 wait for fight:
+start the 2 time, 1 more time
+
+
+
+
+
+
+
+turn : .\image\zuozhandangan\zcqw.png
+
+
+
+
+
+start find-------------------- (918, 659)
+
+
+start find-------------------- (918, 659)
+(918, 659)
+click success
+turn : .\image\zuozhandangan\qd.png
+
+
+start find-------------------- (790, 547)
+
+
+start find-------------------- (790, 547)
+(790, 547)
+click success
+2023-06-10 14:08:36 wait for fight:
+zuo_zhan_dang_an over the 2 time
+
+
+
+
+
+
+start find-------------------- (440, 548)
+
+
+start find-------------------- (440, 548)
+(440, 548)
+click success
+turn : .\image\zhengli\yjty.png
+
+
+
+
+start find-------------------- (723, 705)
+
+
+start find-------------------- (723, 705)
+(723, 705)
+click success
+turn : .\image\zhengli\qd.png
+
+
+start find-------------------- (1155, 705)
+
+
+start find-------------------- (1155, 705)
+(1155, 705)
+click success
+turn : .\image\zhengli\djjx.png
+
+
+
+
+
+
+
+
+no find image
+turn : .\image\zhengli\qd.png
+
+
+start find-------------------- (1014, 681)
+
+
+start find-------------------- (1014, 681)
+(1014, 681)
+click success
+turn : .\image\zhengli\qd.png
+
+
+
+
+
+
+
+no find image
+turn : .\image\zhengli\djjx.png
+
+
+start find-------------------- (640, 518)
+
+
+start find-------------------- (640, 518)
+(640, 518)
+click success
+(55, 88)
+click success
+turn : .\image\zhengli\zlxd.png
+
+
+
+
+
+
+
+no find image
