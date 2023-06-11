@@ -14,6 +14,7 @@ import ctypes
 import sys
 import time
 import threading
+import random
 
 
 class BiLanHangXian():
@@ -88,6 +89,7 @@ class BiLanHangXian():
             print("get screenshot")
             screenshot = np.array(pyautogui.screenshot())
             roi = screenshot[ : self.height,  : self.width]
+            # 转换为灰度图
             self.gameImage = cv2.cvtColor(np.array(roi), cv2.COLOR_BGR2GRAY)
             # cv2.imshow("Output", self.gameImage)
             # cv2.waitKey(0)
@@ -119,12 +121,128 @@ class BiLanHangXian():
             print("start find--------------------", locations[0])
             return locations[0]
         
+
+    @GetScreenShot
+    def FindTargetWithoutTimeOut(self, img, max_time = 10, interval = 0.5, threshold =0.8):
+        '''
+        寻找图片所在位置
+        :param img: 图片名称
+        :param max_time: 寻找图片最大时间
+        :param interval: 寻找时间间隔
+        :param threshold: 图片匹配阈值
+        '''
+        result = cv2.matchTemplate(self.gameImage, img, cv2.TM_CCOEFF_NORMED)
+        print("finding image:")
+        locations = np.where(result >= threshold)
+        locations = list(zip(*locations[::-1]))
+        if len(locations) != 0:
+            top_left = locations[0]
+            bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
+            locations[0] = (int(top_left[0] + img.shape[1]/2), int(top_left[1] + img.shape[0]/2))
+            cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)
+            # cv2.imshow("Output", self.gameImage)
+            # cv2.waitKey(0)
+            print("start find--------------------", locations[0])
+            return locations[0]
+
+
+    def TimeOutRadius(func):
+        '''控制函数的执行时间和间隔
+            默认每0.5s执行一次,共执行10s
+        '''
+        def wrapper(self, img, max_time = 10, interval = 0.5, threshold =0.8, left_top = (0, 0), right_bottom = (0, 0)):
+            start_time = time.time()
+            # timer = 0
+            while True:
+                time.sleep(interval)
+                elapsed_time = time.time() - start_time
+                # timer += 1
+                if elapsed_time > max_time:
+                    break
+                if func(self, img, max_time, interval, threshold, left_top, right_bottom):
+                    return func(self, img, max_time, interval, threshold, left_top, right_bottom)
+        return wrapper
+    
+
+    def GetScreenShotRadius(func):
+        """获取屏幕截图"""
+        def wrapper(self, img, max_time = 10, interval = 0.5, threshold =0.8, left_top = (0, 0), right_bottom = (0, 0)):
+            print("get screenshot")
+            screenshot = np.array(pyautogui.screenshot())
+            roi = screenshot[ : self.height,  : self.width]
+            # 转换为灰度图
+            self.gameImage = cv2.cvtColor(np.array(roi), cv2.COLOR_BGR2GRAY)
+            # cv2.imshow("Output", self.gameImage)
+            # cv2.waitKey(0)
+            return func(self, img, max_time, interval, threshold, left_top, right_bottom)
+        return wrapper
+
+    @TimeOutRadius
+    @GetScreenShotRadius
+    def FindTargetRadius(self, img, max_time = 10, interval = 0.5, threshold =0.8, left_top = (0, 0), right_bottom = (0, 0)):
+        '''
+        寻找图片所在位置
+        :param img: 图片
+        :param max_time: 寻找图片最大时间
+        :param interval: 寻找时间间隔
+        :param threshold: 图片匹配阈值
+        '''
+        if right_bottom[0] > len(self.gameImage[0]) or right_bottom[1] > len(self.gameImage) or right_bottom == (0, 0):
+            right_bottom = (len(self.gameImage[0]), len(self.gameImage))
+        
+        self.gameImage = self.gameImage[left_top[1] : right_bottom[1], left_top[0] : right_bottom[0]]
+        # cv2.imshow("Output", self.gameImage)
+        # cv2.waitKey(0)
+        result = cv2.matchTemplate(self.gameImage, img, cv2.TM_CCOEFF_NORMED)
+
+        print("finding image:")
+        locations = np.where(result >= threshold)
+        locations = list(zip(*locations[::-1]))
+        if len(locations) != 0:
+            top_left = locations[0]
+            bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
+            locations[0] = (int(top_left[0] + img.shape[1]/2), int(top_left[1] + img.shape[0]/2))
+            cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)
+            # cv2.imshow("Output", self.gameImage)
+            # cv2.waitKey(0)
+            print("start find--------------------", locations[0])
+            # return locations[0] + left_top
+            return (locations[0][0] + left_top[0], locations[0][1] +left_top[1])
+        
+
+
+
+    # def test(self):
+    #     screenshot = np.array(pyautogui.screenshot())
+    #     cv2.rectangle(screenshot, (438, 265), (561, 352), (0, 255, 0), 1)
+    #     cv2.imshow("Output", screenshot)
+    #     cv2.waitKey(0)
+        
+    def GetImageOnGame(self, left_top, right_bottom):
+        print("get image on game")
+        screenshot = np.array(pyautogui.screenshot())
+        # # 画线，测试用
+        # cv2.rectangle(screenshot, left_top, right_bottom, (0, 255, 0), 1)
+        # cv2.imshow("Output", screenshot)
+        # cv2.waitKey(0)
+        print(left_top[0] , left_top[1], right_bottom[0] , right_bottom[1])
+        # 截取图片参数为[y1 : y2, x1 : x2]
+        roi = screenshot[left_top[1] : right_bottom[1], left_top[0] : right_bottom[0]]
+        img = cv2.cvtColor(np.array(roi), cv2.COLOR_BGR2GRAY)
+        # cv2.imshow("Output", roi)
+        # cv2.waitKey(0)
+        return img
+    
+
+    
+        
     def zheng_li(self):
         self.flag = True
         zl = ".\\image\\zhengli\\"
+        zl_img = GetImage(zl + "zl.png")
         while self.flag:
-            print(self.flag)
-            result = LeftSingleClick(self.FindTarget(GetImage(zl + "zl.png"), 10, interval=10))
+            result = LeftSingleClick(self.FindTargetWithoutTimeOut(zl_img))
+            time.sleep(10)
             if result:
                 LeftSingleClick(self.FindTarget(GetImage(zl + "yjty.png")))
                 LeftSingleClick(self.FindTarget(GetImage(zl + "qd.png")))
@@ -153,8 +271,8 @@ class BiLanHangXian():
 
 
     def zuo_zhan_dang_an(self, timer):
-        LeftSingleClick(self.FindTarget(GetImage(".\\image\\cj.png")))
         zzda = ".\\image\\zuozhandangan\\"
+        LeftSingleClick(self.FindTarget(GetImage(".\\image\\cj.png")))
         LeftSingleClick(self.FindTarget(GetImage(zzda + "zzda.png")))
         LeftSingleClick(self.FindTarget(GetImage(zzda + "no2.png")))
         LeftSingleClick(self.FindTarget(GetImage(zzda + "D3.png")))
@@ -164,22 +282,49 @@ class BiLanHangXian():
         
         t = threading.Thread(target=self.zheng_li)
         t.start()
-        print("start find zheng_li", self.flag)
 
-        timer -= 1
         print("{} runs left".format(timer))
         time.sleep(360)
-
+        print("timer:", timer)
         while timer > 0:
             timer -= 1
             print("{} runs left".format(timer - 1))
             LeftSingleClick(self.FindTarget(GetImage(zzda + "zcqw.png"), 180, 5))
             LeftSingleClick(self.FindTarget(GetImage(zzda + "qd.png")))
             print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())), "wait for fight:")
-            time.sleep(360)
-        print("zuo_zhan_dang_an over".format())
+            print("----------------------------", timer)
+            time.sleep(11)
+        print("zuo_zhan_dang_an is over")
         self.flag = False
-        print(self.flag)
+        print("close the zheng_li, self.flag=", self.flag)
+
+    
+
+    def ji_dian_mei_shi(self, timer):
+        one = [(182, 265), (305, 352)]
+        two = [(310, 265), (433, 352)]
+        there = [(438, 265), (561, 352)]
+
+
+        jdms = ".\\image\\jidianmeishi\\"
+        LeftSingleClick(self.FindTarget(GetImage(jdms + "ksyx.png")))
+        while timer > 0:
+            timer -= 1
+            time.sleep(1)
+            one_img = self.GetImageOnGame(one[0], one[1])
+            two_img = self.GetImageOnGame(two[0], two[1])
+            there_img = self.GetImageOnGame(there[0], there[1])
+
+            time.sleep(5)
+
+            LeftSingleClick(self.FindTargetRadius(one_img, max_time=2, interval=0.1, threshold=0.5, left_top=(600, 250), right_bottom=(1110,660)))
+            time.sleep(random.random())
+            LeftSingleClick(self.FindTargetRadius(two_img, max_time=2, interval=0.1, threshold=0.5, left_top=(600, 250), right_bottom=(1110,660)))
+            time.sleep(random.random())
+            LeftSingleClick(self.FindTargetRadius(there_img, max_time=2, interval=0.1, threshold=0.5, left_top=(600, 250), right_bottom=(1110,660)))
+            time.sleep(random.random())
+            LeftSingleClick(self.FindTarget(GetImage(jdms + "jxyx.png")))
+        
 
 
 
@@ -219,3 +364,5 @@ if __name__ == '__main__':
     #     elif a == "zzda" or a == "zuozhandangan":
             # b.zuo_zhan_dang_an()
     b.zuo_zhan_dang_an(2)
+    # img = b.ji_dian_mei_shi(2)
+    # b.FindTargetRadius(GetImage(".\\image\\jidianmeishi\\ksyx.png"), left_top=(600, 250), right_bottom=(1110,660))
