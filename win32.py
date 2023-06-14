@@ -185,11 +185,11 @@ class BiLanHangXian():
         zl = ".\\image\\zhengli\\"
         zl_img = GetImage(zl + "zl.png")
         while self.flag:
-            result = LeftSingleClick(self.FindTargetWithoutTimeOut(zl_img))
             time.sleep(10)
+            result = LeftSingleClick(self.FindTargetWithoutTimeOut(zl_img))
             if result:
                 LeftSingleClick(self.FindTarget(GetImage(zl + "yjty.png")))
-                time.sleep(0.5)
+                time.sleep(1)
                 LeftSingleClick(self.FindTarget(GetImage(zl + "qd.png"), left_top=(920,640), right_bottom=(1110,720)))
                 LeftSingleClick(self.FindTarget(GetImage(zl + "djjx.png")))
                 LeftSingleClick(self.FindTarget(GetImage(zl + "qd.png")))
@@ -284,6 +284,20 @@ class BiLanHangXian():
 
             LeftSingleClick(self.FindTarget(GetImage(jdms + "jxyx.png")))
         
+    def huo_dong(self, timer):
+        hd = ".\\image\\huodong\\"
+        LeftSingleClick(self.FindTarget(GetImage(hd + "HT6.png")))
+        LeftSingleClick(self.FindTarget(GetImage(hd + "lkqw.png")))
+        time.sleep(0.5)
+        timer -= 1
+        LeftSingleClick(self.FindTarget(GetImage(hd + "lkqw.png")))
+        time.sleep(400)
+
+
+        while timer > 0:
+            timer -= 1
+            LeftSingleClick(self.FindTarget(GetImage(hd + "zcqw.png"), max_time=180, interval=5))
+            time.sleep(400)
 
 
 
@@ -319,15 +333,16 @@ if __name__ == '__main__':
     # while True:
     #     a = input()
     #     if a == "yanxi":
-    # b.yan_xi(1)
+    # b.yan_xi(10)
     #     elif a == "zzda" or a == "zuozhandangan":
             # b.zuo_zhan_dang_an()
-    b.zuo_zhan_dang_an(2)
+    # b.zuo_zhan_dang_an(3)
     # b.ji_dian_mei_shi()
+    # b.huo_dong(3)
 
 
-
-
-
+    b.zheng_li()
+    # zl = ".\\image\\zhengli\\"
+    # b.FindTarget(GetImage(zl + "qd.png"), left_top=(920,640), right_bottom=(1110,720))
     # b.FindTarget(GetImage(".\\image\\jidianmeishi\\ksyx.png"), left_top=(600, 250), right_bottom=(1110,660))
     # LeftSingleClick(b.FindTarget(GetImage("a.png")))
