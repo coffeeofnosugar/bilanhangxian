@@ -109,15 +109,20 @@ class BiLanHangXian():
         print("finding image:")
         locations = np.where(result >= threshold)
         locations = list(zip(*locations[::-1]))
-        if len(locations) != 0:
-            top_left = locations[0]
-            bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
-            locations[0] = (int(top_left[0] + img.shape[1]/2), int(top_left[1] + img.shape[0]/2))
-            cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)
-            # cv2.imshow("Output", self.gameImage)
-            # cv2.waitKey(0)
-            print("start find--------------------", locations[0])
-            return locations[0]
+
+
+        num = len(locations)
+        if num != 0:
+            print("find {} matching image".format(num))
+            for i in range(num):
+                top_left = locations[i]
+                bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
+                locations[i] = (int(top_left[0] + img.shape[1]/2) + left_top[0], int(top_left[1] + img.shape[0]/2) + left_top[1])
+                cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)               # 画方框，标记出来
+                print("------------------------------find image: ", locations[i])
+                # cv2.imshow("Output", self.gameImage)
+                # cv2.waitKey(0)
+            return locations
 
 
 
@@ -142,27 +147,32 @@ class BiLanHangXian():
         print("finding image:")
         locations = np.where(result >= threshold)
         locations = list(zip(*locations[::-1]))
-        if len(locations) != 0:
-            top_left = locations[0]
-            bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
-            locations[0] = (int(top_left[0] + img.shape[1]/2), int(top_left[1] + img.shape[0]/2))
-            cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)
-            # cv2.imshow("Output", self.gameImage)
-            # cv2.waitKey(0)
-            print("start find--------------------", (locations[0][0] + left_top[0], locations[0][1] +left_top[1]))
-            # return locations[0] + left_top
-            return (locations[0][0] + left_top[0], locations[0][1] +left_top[1])
+
+        num = len(locations)
+        if num != 0:
+            print("find {} matching image".format(num))
+            for i in range(num):
+                top_left = locations[i]
+                bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
+                locations[i] = (int(top_left[0] + img.shape[1]/2) + left_top[0], int(top_left[1] + img.shape[0]/2) + left_top[1])
+                cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)               # 画方框，标记出来
+                print("------------------------------find image: ", locations[i])
+                cv2.imshow("Output", self.gameImage)
+                cv2.waitKey(0)
+
+
+            # 去重
+            
+            return locations
+
         
 
 
-
-    # def test(self):
-    #     screenshot = np.array(pyautogui.screenshot())
-    #     cv2.rectangle(screenshot, (438, 265), (561, 352), (0, 255, 0), 1)
-    #     cv2.imshow("Output", screenshot)
-    #     cv2.waitKey(0)
         
     def GetImageOnGame(self, left_top, right_bottom):
+        '''
+        从游戏中获取图片
+        '''
         print("get image on game")
         screenshot = np.array(pyautogui.screenshot())
         # # 画线，测试用
@@ -313,23 +323,29 @@ def GetImage(imgName):
 
 
 wait = 0.8
-def LeftSingleClick(pos, wait = wait):
+def LeftSingleClick(locations, wait = wait):
     '''左键单击'''
     time.sleep(wait)
-    if pos:
+    if locations:
         # pyautogui.click(pos[0])
-        print(pos)
-        pydirectinput.leftClick(int(pos[0]), int(pos[1]))
+        print(locations)
+        pydirectinput.leftClick(int(locations[0][0]), int(locations[0][1]))
         print("click success")
         return True
     else:
         print("no find image")
         return False
 
+def test(item):
+    print("++++++++++++++++++++++++++++++++++++")
+
 
 if __name__ == '__main__':
     b = BiLanHangXian()
     time.sleep(1)
+
+
+
     # while True:
     #     a = input()
     #     if a == "yanxi":
@@ -341,8 +357,17 @@ if __name__ == '__main__':
     # b.huo_dong(3)
 
 
-    b.zheng_li()
+    # b.zheng_li()
     # zl = ".\\image\\zhengli\\"
     # b.FindTarget(GetImage(zl + "qd.png"), left_top=(920,640), right_bottom=(1110,720))
     # b.FindTarget(GetImage(".\\image\\jidianmeishi\\ksyx.png"), left_top=(600, 250), right_bottom=(1110,660))
+    
+    
     # LeftSingleClick(b.FindTarget(GetImage("a.png")))
+
+
+
+
+    # b.FindTarget(GetImage(".\\image\\yanxi\\zhsl.png"), left_top=(100, 260))
+    # test(b.FindTarget(GetImage(".\\image\\test.png")))
+    # test(b.FindTarget(GetImage(".\\image\\test_1.png")))
