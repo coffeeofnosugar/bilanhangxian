@@ -126,7 +126,7 @@ class BiLanHangXian():
 
 
 
-    @TimeOut
+    # @TimeOut
     @GetScreenShot
     def FindTarget(self, img, max_time = 10, interval = 0.5, threshold =0.9, left_top = (0, 0), right_bottom = (0, 0)):
         '''
@@ -156,14 +156,24 @@ class BiLanHangXian():
                 bottom_right = (top_left[0] + img.shape[1], top_left[1] + img.shape[0])
                 locations[i] = (int(top_left[0] + img.shape[1]/2) + left_top[0], int(top_left[1] + img.shape[0]/2) + left_top[1])
                 cv2.rectangle(self.gameImage, top_left, bottom_right, (0, 255, 0), 2)               # 画方框，标记出来
-                print("------------------------------find image: ", locations[i])
-                cv2.imshow("Output", self.gameImage)
-                cv2.waitKey(0)
-
+                # print("------------------------------find image: ", locations[i])
+                # cv2.imshow("Output", self.gameImage)
+                # cv2.waitKey(0)
 
             # 去重
-            
-            return locations
+            result = []
+            img_hw = img.shape[1]/2
+            img_hh = img.shape[0]/2
+            for x, y in locations:
+                flag = False
+                for rx, ry in result:
+                    if rx - img_hw < x < rx + img_hw and ry - img_hh < y < ry + img_hh:
+                        flag = True
+                        break
+                if not flag:
+                    result.append((x, y))
+            print("duplicate removal result: ", result)
+            return result
 
         
 
@@ -370,4 +380,4 @@ if __name__ == '__main__':
 
     # b.FindTarget(GetImage(".\\image\\yanxi\\zhsl.png"), left_top=(100, 260))
     # test(b.FindTarget(GetImage(".\\image\\test.png")))
-    # test(b.FindTarget(GetImage(".\\image\\test_1.png")))
+    test(b.FindTarget(GetImage(".\\image\\test_1.png")))
