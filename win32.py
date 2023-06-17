@@ -340,11 +340,19 @@ class BiLanHangXian():
 
 
 
-    
+def ReturnPath(relative_path:str) -> str:
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath('.')
+    return os.path.join(base_path, relative_path)
+
+
 
 def GetImage(imgName):
     print("turn :", imgName)
-    return cv2.imread(imgName, 0)
+
+    return cv2.imread(ReturnPath(imgName), 0)
 
 
 wait = 0.8
@@ -395,7 +403,7 @@ if __name__ == '__main__':
 
     # b.FindTarget(GetImage(".\\image\\yanxi\\zhsl.png"), left_top=(100, 260))
     # test(b.FindTarget(GetImage(".\\image\\test.png")))
+
+
     test(b.FindTarget(GetImage(".\\image\\test_1.png")))
-    with open("t.json", "r", encoding="utf-8") as file:
-        data = json.loads(file.read())
-        print(data)
+    
