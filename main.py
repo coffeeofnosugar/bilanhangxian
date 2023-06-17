@@ -1,13 +1,20 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QDialog
-from Ui_untitled import Ui_Dialog
+from Ui_MainWindow import Ui_MainWindow
+from win32 import BiLanHangXian
 
 
-class MyMainWindow(QDialog, Ui_Dialog):
+class MyMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MyMainWindow, self).__init__(parent)
         self.setupUi(self)
+        self.b = BiLanHangXian()
+        self.band()
+    
 
+    def band(self):
+        self.yanxi_button.clicked.connect(lambda : self.b.yan_xi(self.yanxi_timer.value()))
+        self.yanxi_timer.value()
 
 
 if __name__ == "__main__":
@@ -15,10 +22,3 @@ if __name__ == "__main__":
     myWin = MyMainWindow()
     myWin.show()
     sys.exit(app.exec_())
-
-    # app = QApplication(sys.argv)
-    # MainWindow = QDialog()
-    # ui = Ui_Dialog()
-    # ui.setupUi(MainWindow)
-    # MainWindow.show()
-    # sys.exit(app.exec_())
