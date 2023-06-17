@@ -1,13 +1,13 @@
-Microsoft Windows [°æ±¾ 10.0.19045.2965]
-(c) Microsoft Corporation¡£±£ÁôËùÓÐÈ¨Àû¡£
+Microsoft Windows [ï¿½æ±¾ 10.0.19045.2965]
+(c) Microsoft Corporationï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½
 
 C:\WINDOWS\system32>cd C:\Users\zhengchang\Desktop\Script
 
 C:\Users\zhengchang\Desktop\Script>win32
 
 C:\Users\zhengchang\Desktop\Script>#!/bin/bash
-'#!' ²»ÊÇÄÚ²¿»òÍâ²¿ÃüÁî£¬Ò²²»ÊÇ¿ÉÔËÐÐµÄ³ÌÐò
-»òÅú´¦ÀíÎÄ¼þ¡£
+'#!' ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½â²¿ï¿½ï¿½ï¿½î£¬Ò²ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ÐµÄ³ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 
 C:\Users\zhengchang\Desktop\Script>python win32.py
 done

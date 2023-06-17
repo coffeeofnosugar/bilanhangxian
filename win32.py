@@ -15,6 +15,7 @@ import sys
 import time
 import threading
 import random
+import json
 
 
 class BiLanHangXian():
@@ -395,3 +396,6 @@ if __name__ == '__main__':
     # b.FindTarget(GetImage(".\\image\\yanxi\\zhsl.png"), left_top=(100, 260))
     # test(b.FindTarget(GetImage(".\\image\\test.png")))
     test(b.FindTarget(GetImage(".\\image\\test_1.png")))
+    with open("t.json", "r", encoding="utf-8") as file:
+        data = json.loads(file.read())
+        print(data)
