@@ -23,7 +23,7 @@ class Ui_MyWindow(object):
         if not MyWindow.objectName():
             MyWindow.setObjectName(u"MyWindow")
         MyWindow.setEnabled(True)
-        MyWindow.resize(184, 192)
+        MyWindow.resize(201, 186)
         MyWindow.setAcceptDrops(False)
         self.verticalLayout_2 = QVBoxLayout(MyWindow)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -60,12 +60,12 @@ class Ui_MyWindow(object):
 
         self.horizontalLayout.addWidget(self.yanxi_timer)
 
-        self.yanxi_button = QPushButton(MyWindow)
-        self.yanxi_button.setObjectName(u"yanxi_button")
-        self.yanxi_button.setMaximumSize(QSize(40, 30))
-        self.yanxi_button.setAcceptDrops(False)
+        self.yanxi_button_0 = QPushButton(MyWindow)
+        self.yanxi_button_0.setObjectName(u"yanxi_button_0")
+        self.yanxi_button_0.setMaximumSize(QSize(40, 30))
+        self.yanxi_button_0.setAcceptDrops(False)
 
-        self.horizontalLayout.addWidget(self.yanxi_button)
+        self.horizontalLayout.addWidget(self.yanxi_button_0)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -92,14 +92,14 @@ class Ui_MyWindow(object):
 
         self.horizontalLayout_4.addWidget(self.yanxi_timer_4)
 
-        self.yanxi_button_4 = QPushButton(MyWindow)
-        self.yanxi_button_4.setObjectName(u"yanxi_button_4")
-        self.yanxi_button_4.setEnabled(True)
-        self.yanxi_button_4.setMinimumSize(QSize(10, 10))
-        self.yanxi_button_4.setMaximumSize(QSize(40, 30))
-        self.yanxi_button_4.setAcceptDrops(False)
+        self.yanxi_button_1 = QPushButton(MyWindow)
+        self.yanxi_button_1.setObjectName(u"yanxi_button_1")
+        self.yanxi_button_1.setEnabled(True)
+        self.yanxi_button_1.setMinimumSize(QSize(10, 10))
+        self.yanxi_button_1.setMaximumSize(QSize(40, 30))
+        self.yanxi_button_1.setAcceptDrops(False)
 
-        self.horizontalLayout_4.addWidget(self.yanxi_button_4)
+        self.horizontalLayout_4.addWidget(self.yanxi_button_1)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_4)
@@ -125,12 +125,12 @@ class Ui_MyWindow(object):
 
         self.horizontalLayout_3.addWidget(self.yanxi_timer_3)
 
-        self.yanxi_button_3 = QPushButton(MyWindow)
-        self.yanxi_button_3.setObjectName(u"yanxi_button_3")
-        self.yanxi_button_3.setMaximumSize(QSize(40, 30))
-        self.yanxi_button_3.setAcceptDrops(False)
+        self.yanxi_button_2 = QPushButton(MyWindow)
+        self.yanxi_button_2.setObjectName(u"yanxi_button_2")
+        self.yanxi_button_2.setMaximumSize(QSize(40, 30))
+        self.yanxi_button_2.setAcceptDrops(False)
 
-        self.horizontalLayout_3.addWidget(self.yanxi_button_3)
+        self.horizontalLayout_3.addWidget(self.yanxi_button_2)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
@@ -156,12 +156,12 @@ class Ui_MyWindow(object):
 
         self.horizontalLayout_2.addWidget(self.yanxi_timer_2)
 
-        self.yanxi_button_2 = QPushButton(MyWindow)
-        self.yanxi_button_2.setObjectName(u"yanxi_button_2")
-        self.yanxi_button_2.setMaximumSize(QSize(40, 30))
-        self.yanxi_button_2.setAcceptDrops(False)
+        self.yanxi_button_4 = QPushButton(MyWindow)
+        self.yanxi_button_4.setObjectName(u"yanxi_button_4")
+        self.yanxi_button_4.setMaximumSize(QSize(40, 30))
+        self.yanxi_button_4.setAcceptDrops(False)
 
-        self.horizontalLayout_2.addWidget(self.yanxi_button_2)
+        self.horizontalLayout_2.addWidget(self.yanxi_button_4)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -179,12 +179,12 @@ class Ui_MyWindow(object):
         MyWindow.setWindowTitle(QCoreApplication.translate("MyWindow", u"\u78a7\u84dd\u822a\u7ebf", None))
         self.label_5.setText(QCoreApplication.translate("MyWindow", u"\u6797\u80af\u6b7b\u5927\u5934", None))
         self.label.setText(QCoreApplication.translate("MyWindow", u"\u6f14\u4e60", None))
-        self.yanxi_button.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
+        self.yanxi_button_0.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
         self.label_4.setText(QCoreApplication.translate("MyWindow", u"\u6f14\u4e60", None))
-        self.yanxi_button_4.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
+        self.yanxi_button_1.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
         self.label_3.setText(QCoreApplication.translate("MyWindow", u"\u6f14\u4e60", None))
-        self.yanxi_button_3.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
-        self.label_2.setText(QCoreApplication.translate("MyWindow", u"\u6f14\u4e60", None))
         self.yanxi_button_2.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
+        self.label_2.setText(QCoreApplication.translate("MyWindow", u"\u6f14\u4e60", None))
+        self.yanxi_button_4.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
     # retranslateUi
 

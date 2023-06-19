@@ -374,8 +374,9 @@ def test(item):
 
 
 if __name__ == '__main__':
-    b = BiLanHangXian()
-    time.sleep(1)
+    pass
+    # b = BiLanHangXian()
+    # time.sleep(1)
 
 
 
@@ -405,5 +406,5 @@ if __name__ == '__main__':
     # test(b.FindTarget(GetImage(".\\image\\test.png")))
 
 
-    test(b.FindTarget(GetImage(".\\image\\test_1.png")))
+    # test(b.FindTarget(GetImage(".\\image\\test_1.png")))
     
