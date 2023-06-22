@@ -374,6 +374,7 @@ def test(item):
 
 
 if __name__ == '__main__':
+    print(__name__)
     pass
     # b = BiLanHangXian()
     # time.sleep(1)

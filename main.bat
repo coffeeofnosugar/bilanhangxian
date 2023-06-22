@@ -1,2 +1,1 @@
-#!/bin/bash
-python main.py
+python "C:\Users\zhengchang\Desktop\Script\main.py"

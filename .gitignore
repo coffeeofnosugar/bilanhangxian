@@ -3,3 +3,8 @@
 callback.py
 firs.py
 test.py
+demo.py
+.idea
+build
+dist
+*exe

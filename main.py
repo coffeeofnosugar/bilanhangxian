@@ -9,8 +9,10 @@ import time
 class WorkThread(QObject):
     signal = Signal()
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         super().__init__()
+        self.args = args
+        self.kwargs = kwargs
         print("run")
 
     def moveToThread(self, thread: QThread) -> None:
@@ -21,19 +23,23 @@ class WorkThread(QObject):
         '''
         在执行完函数后，结束线程
         '''
-        def wrapper(self):
-            result = func(self)
+        def wrapper(self, *args, **kwargs):
+            result = func(self, *args, **kwargs)
             self.thread.exit()
             return result
         return wrapper
 
-    @Exit
-    def FindTarget(self):
-        b.FindTarget(GetImage("./image/test_1.png"), max_time = 5)
+    # @Exit
+    # def FindTarget(self):
+    #     b.FindTarget(GetImage("./image/test_1.png"), max_time = 5)
     
     @Exit
     def yan_xi(self):
-        b.yan_xi(10)
+        print(self.kwargs['timer'], "次")
+        b.yan_xi(self.kwargs['timer'])
+        # for i in range(self.kwargs['timer']):
+        #     print(i)
+        #     time.sleep(1)
         
 
     
@@ -46,23 +52,17 @@ class MyMainWindow(Ui_MyWindow, QWidget):
 
         
     def bind(self):
-
-
-        # FindTarget
-        self.workThread = WorkThread()  # 实例化一个工作线程对象
-        self.threadList = QThread()  # 实例化一个线程池对象
-        self.workThread.moveToThread(self.threadList)  # 将工作线程移动到子线程中
-        self.threadList.started.connect(self.workThread.FindTarget)
-        self.threadList.finished.connect(lambda: print('finished'))
-        self.yanxi_button_0.clicked.connect(self.threadList.start)
-
         # yan_xi
-        self.yanxiThread = WorkThread()  # 实例化一个工作线程对象
-        self.yanxiList = QThread()
-        self.yanxiThread.moveToThread(self.yanxiList)  # 将工作线程移动到子线程中 （
-        self.yanxiList.started.connect(self.yanxiThread.yan_xi)  # 将工作线程移动到子线程中
-        self.yanxiList.finished.connect(lambda: print('yan_xi finished'))  # 连接结束条件，在finished条件下，执行下
-        self.yanxi_button_1.clicked.connect(self.yanxiList.start)
+        self.yanxiThread = QThread()
+        self.yanxiThread.finished.connect(lambda: print('yan_xi finished'))
+        self.yanxi_button_0.clicked.connect(self.yanxi_thread)
+        
+    def yanxi_thread(self):
+        self.yanxiList_ = WorkThread(timer=self.yanxi_timer.value())
+        self.yanxiList_.moveToThread(self.yanxiThread)
+        self.yanxiThread.started.connect(self.yanxiList_.yan_xi)
+        self.yanxiThread.start()
+
 
 
 if __name__ == "__main__":
