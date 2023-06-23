@@ -70,7 +70,7 @@ class BiLanHangXian():
         '''控制函数的执行时间和间隔
             默认每0.5s执行一次,共执行10s
         '''
-        def wrapper(self, img, max_time = 10, interval = 0.5, threshold =0.8, left_top = (0, 0), right_bottom = (0, 0)):
+        def wrapper(self, img, max_time = 10, interval = 0.5, *args, **kwargs):
             start_time = time.time()
             # timer = 0
             while True:
@@ -79,14 +79,16 @@ class BiLanHangXian():
                 # timer += 1
                 if elapsed_time > max_time:
                     break
-                if func(self, img, max_time, interval, threshold, left_top, right_bottom):
-                    return func(self, img, max_time, interval, threshold, left_top, right_bottom)
+                result = func(self, img, max_time, interval, *args, **kwargs)
+                if result:
+                    return result
         return wrapper
     
 
     def GetScreenShot(func):
         """获取屏幕截图"""
-        def wrapper(self, img, max_time = 10, interval = 0.5, threshold =0.8, left_top = (0, 0), right_bottom = (0, 0)):
+        # def wrapper(self, img, max_time = 10, interval = 0.5, threshold =0.8, left_top = (0, 0), right_bottom = (0, 0)):
+        def wrapper(self, *args, **kwargs):
             print("get screenshot")
             screenshot = np.array(pyautogui.screenshot())
             roi = screenshot[ : self.height,  : self.width]
@@ -94,7 +96,7 @@ class BiLanHangXian():
             self.gameImage = cv2.cvtColor(np.array(roi), cv2.COLOR_BGR2GRAY)
             # cv2.imshow("Output", self.gameImage)
             # cv2.waitKey(0)
-            return func(self, img, max_time, interval, threshold, left_top, right_bottom)
+            return func(self, *args, **kwargs)
         return wrapper
 
     @GetScreenShot
@@ -213,7 +215,25 @@ class BiLanHangXian():
         return img
     
 
-    
+    def wheel(self, position=(640,404), lenth=0.1):
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
     def zheng_li(self):
         self.flag = True
@@ -302,11 +322,11 @@ class BiLanHangXian():
 
             time.sleep(5.5)
 
-            isDone_one = LeftSingleClick(self.FindTarget(one_img, max_time=1, interval=0.1, threshold=0.6, left_top=(600, 250), right_bottom=(1110,660)), wait=0)
+            isDone_one = LeftSingleClick(self.FindTarget(one_img, max_time=1, interval=0.1, threshold=0.6, left_top=(600, 250), right_bottom=(1110,660)), wait=0.2)
             time.sleep(random.random())
-            isDone_two = LeftSingleClick(self.FindTarget(two_img, max_time=1, interval=0.1, threshold=0.6, left_top=(600, 250), right_bottom=(1110,660)), wait=0)
+            isDone_two = LeftSingleClick(self.FindTarget(two_img, max_time=1, interval=0.1, threshold=0.6, left_top=(600, 250), right_bottom=(1110,660)), wait=0.2)
             time.sleep(random.random())
-            isDone_there = LeftSingleClick(self.FindTarget(there_img, max_time=1, interval=0.1, threshold=0.6, left_top=(600, 250), right_bottom=(1110,660)), wait=0)
+            isDone_there = LeftSingleClick(self.FindTarget(there_img, max_time=1, interval=0.1, threshold=0.6, left_top=(600, 250), right_bottom=(1110,660)), wait=0.2)
             time.sleep(random.random())
             if isDone_one == False or isDone_two == False or isDone_there == False:
                 print("至少有一个匹配失败")
@@ -316,8 +336,8 @@ class BiLanHangXian():
                 LeftSingleClick([(670, 470)], 0.2)
                 LeftSingleClick([(850,470)], 0.2)
                 LeftSingleClick([(1030,470)], 0.2)
-
-            LeftSingleClick(self.FindTarget(GetImage(jdms + "jxyx.png")))
+            if timer > 0:
+                LeftSingleClick(self.FindTarget(GetImage(jdms + "jxyx.png")))
         
     def huo_dong(self, timer):
         hd = ".\\image\\huodong\\"
@@ -355,14 +375,14 @@ def GetImage(imgName):
     return cv2.imread(ReturnPath(imgName), 0)
 
 
-wait_ = 0.5
-def LeftSingleClick(locations, wait = wait_):
+def LeftSingleClick(locations, wait = 0.5):
     '''
     单击左键
      :param locations: 坐标组，[(x1,y1), (x2, y2)...]
      :param wait_: 等待时间, 默认0.5秒
     '''
-    time.sleep(wait_)
+    print("wait_    ", wait)
+    time.sleep(wait)
     if locations:
         # pyautogui.click(pos[0])
         print(locations)
