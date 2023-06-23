@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
-    <height>347</height>
+    <width>233</width>
+    <height>223</height>
    </rect>
   </property>
   <property name="acceptDrops">
@@ -79,7 +79,7 @@
       <widget class="QSpinBox" name="yanxi_timer">
        <property name="minimumSize">
         <size>
-         <width>60</width>
+         <width>70</width>
          <height>0</height>
         </size>
        </property>
@@ -121,7 +121,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="label_1">
        <property name="minimumSize">
         <size>
          <width>50</width>
@@ -138,7 +138,7 @@
         <bool>false</bool>
        </property>
        <property name="text">
-        <string>演习</string>
+        <string>祭典美食</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -146,10 +146,13 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="yanxi_timer_3">
+      <widget class="QSpinBox" name="meishi_timer">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="minimumSize">
         <size>
-         <width>60</width>
+         <width>70</width>
          <height>0</height>
         </size>
        </property>
@@ -171,7 +174,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="yanxi_button_3">
+      <widget class="QPushButton" name="meishi_button_1">
        <property name="maximumSize">
         <size>
          <width>40</width>
@@ -219,7 +222,7 @@
       <widget class="QSpinBox" name="yanxi_timer_2">
        <property name="minimumSize">
         <size>
-         <width>60</width>
+         <width>70</width>
          <height>0</height>
         </size>
        </property>
@@ -241,7 +244,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="yanxi_button_2">
+      <widget class="QPushButton" name="_button_2">
        <property name="maximumSize">
         <size>
          <width>40</width>
@@ -261,7 +264,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLabel" name="label_1">
+      <widget class="QLabel" name="label_3">
        <property name="minimumSize">
         <size>
          <width>50</width>
@@ -292,7 +295,7 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>60</width>
+         <width>70</width>
          <height>0</height>
         </size>
        </property>
@@ -314,7 +317,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="yanxi_button_1">
+      <widget class="QPushButton" name="_button_3">
        <property name="enabled">
         <bool>true</bool>
        </property>

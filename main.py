@@ -40,12 +40,18 @@ class WorkThread(QObject):
         # for i in range(self.kwargs['timer']):
         #     print(i)
         #     time.sleep(1)
+    
+    @Exit
+    def ji_dian_mei_shi(self):
+        print("meishi start")
+        b.ji_dian_mei_shi()
         
 
     
 
 class MyMainWindow(Ui_MyWindow, QWidget):
     def __init__(self):
+        
         super().__init__()
         self.setupUi(self)
         self.bind()
@@ -53,15 +59,27 @@ class MyMainWindow(Ui_MyWindow, QWidget):
         
     def bind(self):
         # yan_xi
-        self.yanxiThread = QThread()
-        self.yanxiThread.finished.connect(lambda: print('yan_xi finished'))
-        self.yanxi_button_0.clicked.connect(self.yanxi_thread)
+        self.yanxi_thread = QThread()
+        self.yanxi_thread.finished.connect(lambda: print('yan_xi finished'))
+        self.yanxi_button_0.clicked.connect(self.yan_xi)
+
+
+        # meishijidian
+        self.meishi_thread = QThread()
+        self.meishi_thread.finished.connect(lambda: print('meishijidian finished'))
+        self.meishi_button_1.clicked.connect(self.ji_dian_mei_shi)
         
-    def yanxi_thread(self):
-        self.yanxiList_ = WorkThread(timer=self.yanxi_timer.value())
-        self.yanxiList_.moveToThread(self.yanxiThread)
-        self.yanxiThread.started.connect(self.yanxiList_.yan_xi)
-        self.yanxiThread.start()
+    def yan_xi(self):
+        self.yanxiList = WorkThread(timer=self.yanxi_timer.value())
+        self.yanxiList.moveToThread(self.yanxi_thread)
+        self.yanxi_thread.started.connect(self.yanxiList.yan_xi)
+        self.yanxi_thread.start()
+    
+    def ji_dian_mei_shi(self):
+        self.meishiList = WorkThread()
+        self.meishiList.moveToThread(self.meishi_thread)
+        self.meishi_thread.started.connect(self.meishiList.ji_dian_mei_shi)
+        self.meishi_thread.start()
 
 
 

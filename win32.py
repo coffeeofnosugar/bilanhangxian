@@ -310,12 +310,12 @@ class BiLanHangXian():
             time.sleep(random.random())
             if isDone_one == False or isDone_two == False or isDone_there == False:
                 print("至少有一个匹配失败")
-                LeftSingleClick((670, 330))
-                LeftSingleClick((850,330))
-                LeftSingleClick((1030,330))
-                LeftSingleClick((670, 470))
-                LeftSingleClick((850,470))
-                LeftSingleClick((1030,470))
+                LeftSingleClick([(670, 330)], 0.2)
+                LeftSingleClick([(850,330)], 0.2)
+                LeftSingleClick([(1030,330)], 0.2)
+                LeftSingleClick([(670, 470)], 0.2)
+                LeftSingleClick([(850,470)], 0.2)
+                LeftSingleClick([(1030,470)], 0.2)
 
             LeftSingleClick(self.FindTarget(GetImage(jdms + "jxyx.png")))
         
@@ -355,10 +355,14 @@ def GetImage(imgName):
     return cv2.imread(ReturnPath(imgName), 0)
 
 
-wait = 0.8
-def LeftSingleClick(locations, wait = wait):
-    '''左键单击'''
-    time.sleep(wait)
+wait_ = 0.5
+def LeftSingleClick(locations, wait = wait_):
+    '''
+    单击左键
+     :param locations: 坐标组，[(x1,y1), (x2, y2)...]
+     :param wait_: 等待时间, 默认0.5秒
+    '''
+    time.sleep(wait_)
     if locations:
         # pyautogui.click(pos[0])
         print(locations)
@@ -376,8 +380,9 @@ def test(item):
 if __name__ == '__main__':
     print(__name__)
     pass
-    # b = BiLanHangXian()
+    b = BiLanHangXian()
     # time.sleep(1)
+    b.ji_dian_mei_shi()
 
 
 
