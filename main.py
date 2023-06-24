@@ -45,6 +45,11 @@ class WorkThread(QObject):
     def ji_dian_mei_shi(self):
         print("meishi start")
         b.ji_dian_mei_shi()
+    
+    @Exit
+    def ji_chu_xun_huan(self):
+        print('jichuxunhuan start')
+        b.ji_chu_xun_huan(self.kwargs['timer'])
         
 
     
@@ -64,10 +69,16 @@ class MyMainWindow(Ui_MyWindow, QWidget):
         self.yanxi_button_0.clicked.connect(self.yan_xi)
 
 
-        # meishijidian
+        # ji_dian_mei_shi
         self.meishi_thread = QThread()
         self.meishi_thread.finished.connect(lambda: print('meishijidian finished'))
         self.meishi_button_1.clicked.connect(self.ji_dian_mei_shi)
+
+        #ji_chu_xun_huan
+        self.xunhuan_thread = QThread()
+        self.xunhuan_thread.finished.connect(lambda: print('jichuxuhuan finished'))
+        self.jichuxunhuan_button_2.clicked.connect(self.ji_chu_xun_huan)
+
         
     def yan_xi(self):
         self.yanxiList = WorkThread(timer=self.yanxi_timer.value())
@@ -81,6 +92,11 @@ class MyMainWindow(Ui_MyWindow, QWidget):
         self.meishi_thread.started.connect(self.meishiList.ji_dian_mei_shi)
         self.meishi_thread.start()
 
+    def ji_chu_xun_huan(self):
+        self.xunhuanList = WorkThread(timer=self.jichuxunhuan_timer_2.value())
+        self.xunhuanList.moveToThread(self.xunhuan_thread)
+        self.xunhuan_thread.started.connect(self.xunhuanList.ji_chu_xun_huan)
+        self.xunhuan_thread.start()
 
 
 if __name__ == "__main__":

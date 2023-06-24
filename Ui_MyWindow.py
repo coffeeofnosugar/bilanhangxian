@@ -23,7 +23,7 @@ class Ui_MyWindow(object):
         if not MyWindow.objectName():
             MyWindow.setObjectName(u"MyWindow")
         MyWindow.setEnabled(True)
-        MyWindow.resize(233, 223)
+        MyWindow.resize(259, 233)
         MyWindow.setAcceptDrops(False)
         self.verticalLayout = QVBoxLayout(MyWindow)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -111,22 +111,22 @@ class Ui_MyWindow(object):
 
         self.horizontalLayout_3.addWidget(self.label_2)
 
-        self.yanxi_timer_2 = QSpinBox(MyWindow)
-        self.yanxi_timer_2.setObjectName(u"yanxi_timer_2")
-        self.yanxi_timer_2.setMinimumSize(QSize(70, 0))
-        self.yanxi_timer_2.setMaximumSize(QSize(60, 16777215))
-        self.yanxi_timer_2.setAcceptDrops(False)
-        self.yanxi_timer_2.setMaximum(10)
-        self.yanxi_timer_2.setValue(10)
+        self.jichuxunhuan_timer_2 = QSpinBox(MyWindow)
+        self.jichuxunhuan_timer_2.setObjectName(u"jichuxunhuan_timer_2")
+        self.jichuxunhuan_timer_2.setMinimumSize(QSize(70, 0))
+        self.jichuxunhuan_timer_2.setMaximumSize(QSize(60, 16777215))
+        self.jichuxunhuan_timer_2.setAcceptDrops(False)
+        self.jichuxunhuan_timer_2.setMaximum(99)
+        self.jichuxunhuan_timer_2.setValue(1)
 
-        self.horizontalLayout_3.addWidget(self.yanxi_timer_2)
+        self.horizontalLayout_3.addWidget(self.jichuxunhuan_timer_2)
 
-        self._button_2 = QPushButton(MyWindow)
-        self._button_2.setObjectName(u"_button_2")
-        self._button_2.setMaximumSize(QSize(40, 30))
-        self._button_2.setAcceptDrops(False)
+        self.jichuxunhuan_button_2 = QPushButton(MyWindow)
+        self.jichuxunhuan_button_2.setObjectName(u"jichuxunhuan_button_2")
+        self.jichuxunhuan_button_2.setMaximumSize(QSize(40, 30))
+        self.jichuxunhuan_button_2.setAcceptDrops(False)
 
-        self.horizontalLayout_3.addWidget(self._button_2)
+        self.horizontalLayout_3.addWidget(self.jichuxunhuan_button_2)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
@@ -135,6 +135,7 @@ class Ui_MyWindow(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.label_3 = QLabel(MyWindow)
         self.label_3.setObjectName(u"label_3")
+        self.label_3.setEnabled(False)
         self.label_3.setMinimumSize(QSize(50, 0))
         self.label_3.setMaximumSize(QSize(100, 16777215))
         self.label_3.setAcceptDrops(False)
@@ -144,7 +145,7 @@ class Ui_MyWindow(object):
 
         self.yanxi_timer_1 = QSpinBox(MyWindow)
         self.yanxi_timer_1.setObjectName(u"yanxi_timer_1")
-        self.yanxi_timer_1.setEnabled(True)
+        self.yanxi_timer_1.setEnabled(False)
         self.yanxi_timer_1.setMinimumSize(QSize(70, 0))
         self.yanxi_timer_1.setMaximumSize(QSize(60, 16777215))
         self.yanxi_timer_1.setAcceptDrops(False)
@@ -155,7 +156,7 @@ class Ui_MyWindow(object):
 
         self._button_3 = QPushButton(MyWindow)
         self._button_3.setObjectName(u"_button_3")
-        self._button_3.setEnabled(True)
+        self._button_3.setEnabled(False)
         self._button_3.setMinimumSize(QSize(10, 10))
         self._button_3.setMaximumSize(QSize(40, 30))
         self._button_3.setAcceptDrops(False)
@@ -178,9 +179,9 @@ class Ui_MyWindow(object):
         self.yanxi_button_0.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
         self.label_1.setText(QCoreApplication.translate("MyWindow", u"\u796d\u5178\u7f8e\u98df", None))
         self.meishi_button_1.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
-        self.label_2.setText(QCoreApplication.translate("MyWindow", u"\u6f14\u4e60", None))
-        self._button_2.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
-        self.label_3.setText(QCoreApplication.translate("MyWindow", u"\u6f14\u4e60", None))
+        self.label_2.setText(QCoreApplication.translate("MyWindow", u"\u57fa\u7840\u5faa\u73af", None))
+        self.jichuxunhuan_button_2.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
+        self.label_3.setText(QCoreApplication.translate("MyWindow", u"\u5f85\u5b9a", None))
         self._button_3.setText(QCoreApplication.translate("MyWindow", u"\u5f00\u59cb", None))
     # retranslateUi
 
