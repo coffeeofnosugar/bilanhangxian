@@ -279,7 +279,7 @@ class BiLanHangXian():
             LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\djjx.png"), 120, 5, threshold=0.6, left_top=(85,625), right_bottom=(280,700)))
             LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\djjx1.png")))
             LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\qd.png"), threshold=0.6, left_top=(1087,665), right_bottom=(1267,730)))
-            LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\djgb.png"), max_time=3), 1.2)
+            LeftSingleClick(self.FindTarget(GetImage(".\\image\\yanxi\\djgb.png"), max_time=1), 1.2)
 
     @staticmethod
     def move(location):
@@ -606,7 +606,8 @@ def test(item):
 
 
 if __name__ == '__main__':
-    # print(__name__)
+    print("win32.py     ", __name__)
+    print("start win32.py")
     # pass
     b = BiLanHangXian()
     # # time.sleep(1)
