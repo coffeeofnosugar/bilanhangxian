@@ -47,29 +47,29 @@ class BiLanHangXian():
             if extra in win32gui.GetWindowText(hwnd):
                 win32gui.SetWindowPos(hwnd, win32con.HWND_TOP, 0, 0, 0, 0, win32con.SWP_NOSIZE | win32con.SWP_SHOWWINDOW)
 
-        # 绕开管理系统
-        def is_admin():
-            try:
-                return ctypes.windll.shell32.IsUserAnAdmin()
-            except:
-                return False
+        # # 绕开管理系统
+        # def is_admin():
+        #     try:
+        #         return ctypes.windll.shell32.IsUserAnAdmin()
+        #     except:
+        #         return False
 
-        if is_admin():
+        # if is_admin():
             # Code of your program here
             # 遍历所有窗口，查找指定窗口并设置位置
-            win32gui.EnumWindows(callback, "MuMu")
-            print('done')
-        else:
-            # Re-run the program with admin rightsd
-            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
-        # 寻找命令行窗口，并关闭
-        # hwnd_cmd = win32gui.FindWindow(None, r"C:\Users\zhengchang\AppData\Local\Programs\Python\Python311\python.exe")
-        hwnd_cmd = win32gui.FindWindow(None, r"D:\envs\script_venv\Scripts\python.exe")
-        if hwnd_cmd != 0:
-            win32api.SendMessage(hwnd_cmd, win32con.WM_CLOSE, 0, 0)
-        # hwnd_cmd = win32gui.FindWindow(None, r"win32.bat - 快捷方式")
+        win32gui.EnumWindows(callback, "MuMu")
+        print('done')
+        # else:
+        #     # Re-run the program with admin rightsd
+        #     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
+        # # 寻找命令行窗口，并关闭
+        # # hwnd_cmd = win32gui.FindWindow(None, r"C:\Users\zhengchang\AppData\Local\Programs\Python\Python311\python.exe")
+        # hwnd_cmd = win32gui.FindWindow(None, r"D:\envs\script_venv\Scripts\python.exe")
         # if hwnd_cmd != 0:
         #     win32api.SendMessage(hwnd_cmd, win32con.WM_CLOSE, 0, 0)
+        # # hwnd_cmd = win32gui.FindWindow(None, r"win32.bat - 快捷方式")
+        # # if hwnd_cmd != 0:
+        # #     win32api.SendMessage(hwnd_cmd, win32con.WM_CLOSE, 0, 0)
 
     def TimeOut(func):
         '''控制函数的执行时间和间隔
@@ -615,7 +615,7 @@ if __name__ == '__main__':
     # b.ji_dian_mei_shi()
     # b.ji_chu_xun_huan(2)
     # wheel()
-    b.fu_ben_hard()
+    # b.fu_ben_hard()
 
 
 
