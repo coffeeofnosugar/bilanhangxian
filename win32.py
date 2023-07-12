@@ -63,7 +63,8 @@ class BiLanHangXian():
             # Re-run the program with admin rightsd
             ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
         # 寻找命令行窗口，并关闭
-        hwnd_cmd = win32gui.FindWindow(None, r"C:\Users\zhengchang\AppData\Local\Programs\Python\Python311\python.exe")
+        # hwnd_cmd = win32gui.FindWindow(None, r"C:\Users\zhengchang\AppData\Local\Programs\Python\Python311\python.exe")
+        hwnd_cmd = win32gui.FindWindow(None, r"D:\envs\script_venv\Scripts\python.exe")
         if hwnd_cmd != 0:
             win32api.SendMessage(hwnd_cmd, win32con.WM_CLOSE, 0, 0)
         # hwnd_cmd = win32gui.FindWindow(None, r"win32.bat - 快捷方式")
@@ -386,7 +387,7 @@ class BiLanHangXian():
                     # drag_screen
                     distance = [(400,0), (-400,0), (0,400), (0,-400)]
                     timer_ += 1 if timer_ < 3 else -3
-                    Drag(distance[timer_][0], distance[timer_][1])
+                    # Drag(distance[timer_][0], distance[timer_][1])
 
 
 
