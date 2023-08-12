@@ -1,1 +1,0 @@
-python "C:\Users\zhengchang\Desktop\Script\main.py"
